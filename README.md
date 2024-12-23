@@ -10,4 +10,4 @@ A German explanation how to connect Bosch Compress 5800/6800i & Buderus Logather
 
 ![Simple Dashboard](./images/SimpleDashboard.png)
 
-[Configuration](./dashboards/)
+[Configuration](./dashboards/simple-dashboard.yaml)
