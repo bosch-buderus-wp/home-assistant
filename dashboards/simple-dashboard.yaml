@@ -59,8 +59,8 @@ views:
               rows: auto
             needle: true
           - type: gauge
-            entity: sensor.boiler_cop
-            name: COP
+            entity: sensor.boiler_az
+            name: Arbeitszahl
             min: 0
             max: 6
             needle: true
