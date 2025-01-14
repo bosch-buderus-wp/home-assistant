@@ -1,0 +1,75 @@
+type: custom:plotly-graph
+entities:
+  - entity: sensor.boiler_nrgtotal
+    name: Thermische Leistungsabgabe
+    line:
+      shape: spline
+    filters:
+      - resample: 10m
+      - derivate: h
+      - store_var: q
+  - entity: sensor.boiler_metertotal
+    name: Elektrische Leistungsaufnahme
+    line:
+      shape: spline
+    filters:
+      - resample: 10m
+      - derivate: h
+      - store_var: p
+  - entity: sensor.boiler_metertotal
+    name: Arbeitszahl
+    unit_of_measurement: ""
+    hovertemplate: "%{y:.2f}"
+    yaxis: y2
+    type: bar
+    period: 5minute
+    filters:
+      - resample: 10m
+      - map_y: vars.q.ys[i] / vars.p.ys[i]
+  - entity: sensor.thermostat_dampedoutdoortemp
+    name: Gedämpfte Außentemperatur
+    line:
+      shape: spline
+      dash: dashdot
+    visible: legendonly
+  - entity: sensor.boiler_curflowtemp
+    name: Vorlauftemperatur
+    line:
+      dash: dash
+    visible: legendonly
+  - entity: sensor.boiler_curburnpow
+    name: Modulation
+    line:
+      dash: dot
+    visible: legendonly
+hours_to_show: 24
+refresh_interval: 10
+title: Leistung, Modulation, Temperatur & Arbeitszahl
+grid_options:
+  columns: full
+  rows: 10
+layout:
+  yaxis:
+    range:
+      - -2
+      - 6
+    fixedrange: true
+  yaxis2:
+    title: Arbeitszahl
+    range:
+      - -1
+      - 25
+  xaxis:
+    rangeselector:
+      "y": 1.2
+      buttons:
+        - count: 1
+          step: minute
+        - count: 1
+          step: hour
+        - count: 12
+          step: hour
+        - count: 1
+          step: day
+        - count: 7
+          step: day
