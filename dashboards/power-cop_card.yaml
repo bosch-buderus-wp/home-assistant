@@ -2,16 +2,12 @@ type: custom:plotly-graph
 entities:
   - entity: sensor.boiler_nrgtotal
     name: Thermische Leistungsabgabe
-    line:
-      shape: spline
     filters:
       - resample: 10m
       - derivate: h
       - store_var: q
   - entity: sensor.boiler_metertotal
     name: Elektrische Leistungsaufnahme
-    line:
-      shape: spline
     filters:
       - resample: 10m
       - derivate: h
@@ -28,26 +24,34 @@ entities:
       - map_y: vars.q.ys[i] / vars.p.ys[i]
   - entity: sensor.thermostat_dampedoutdoortemp
     name: Gedämpfte Außentemperatur
-    line:
-      shape: spline
-      dash: dashdot
     visible: legendonly
   - entity: sensor.boiler_curflowtemp
     name: Vorlauftemperatur
-    line:
-      dash: dash
     visible: legendonly
+    filters:
+      - sliding_window_moving_average:
+          window_size: 5
+  - entity: sensor.boiler_hptw1
+    name: Warmwassertemperatur
+    visible: legendonly
+    filters:
+      - sliding_window_moving_average:
+          window_size: 3
   - entity: sensor.boiler_curburnpow
     name: Modulation
-    line:
-      dash: dot
     visible: legendonly
+    line:
+      shape: hvh
 hours_to_show: 24
 refresh_interval: 10
 title: Leistung, Modulation, Temperatur & Arbeitszahl
 grid_options:
   columns: full
   rows: 10
+defaults:
+  entity:
+    line:
+      shape: spline
 layout:
   yaxis:
     range:
