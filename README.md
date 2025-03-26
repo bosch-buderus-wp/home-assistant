@@ -4,6 +4,9 @@ This repository contains various configurations to use **Bosch Compress 5800/680
 
 A German explanation how to connect Bosch Compress 5800/6800i & Buderus Logatherm WLW176/186 to Home Assistant can be found on [https://bosch-buderus-wp.github.io/](https://bosch-buderus-wp.github.io/docs/smarthome/).
 
+The samples in this repository assume that you configured your ems-esp [MQTT Settings](http://ems-esp/settings/mqtt) with `Entity ID format = Single, short name (v3.6)`.
+If you use another format, you might need to adapt the entity names in the dashboards/cards.
+
 ## Dashboards
 
 To use the following dashboard, simply create a new dashboard in the dashboard overview of the settings:
