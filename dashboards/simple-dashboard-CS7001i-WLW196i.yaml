@@ -1,0 +1,253 @@
+views:
+  - title: Überblick
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Aktuelle Werte
+            heading_style: title
+            icon: mdi:heat-pump
+          - graph: line
+            type: sensor
+            entity: sensor.boiler_curburnpow
+            detail: 1
+            name: Modulation
+            icon: mdi:fan
+          - graph: line
+            type: sensor
+            entity: sensor.boiler_curflowtemp
+            detail: 1
+            name: Vorlauftemperatur
+            icon: mdi:thermometer-lines
+          - graph: line
+            type: sensor
+            entity: sensor.boiler_hptw1
+            detail: 1
+            name: Warmwassertemperatur
+            icon: mdi:water-thermometer
+          - graph: line
+            type: sensor
+            entity: sensor.boiler_outdoortemp
+            detail: 1
+            name: Außentemperatur
+            icon: mdi:home-thermometer-outline
+          - type: thermostat
+            entity: climate.thermostat_hc1
+            show_current_as_primary: false
+            name: Gewählte Raumtemperatur
+            grid_options:
+              columns: 12
+              rows: 5
+          - type: gauge
+            entity: sensor.boiler_powerconstotal
+            unit: kW
+            name: Elektrische Leistungsaufnahme
+            min: 0
+            max: 1.8
+            grid_options:
+              columns: 6
+              rows: auto
+            needle: true
+          - type: gauge
+            entity: sensor.boiler_powertotal
+            unit: kW
+            min: 0
+            max: 5
+            name: Thermische Leistungsabgabe
+            grid_options:
+              columns: 6
+              rows: auto
+            needle: true
+          - type: gauge
+            entity: sensor.boiler_az
+            name: Arbeitszahl
+            min: 0
+            max: 6
+            needle: true
+            grid_options:
+              columns: 6
+              rows: auto
+        column_span: 4
+      - type: grid
+        cards:
+          - type: heading
+            heading: Heute
+            heading_style: title
+            icon: mdi:arrow-collapse-left
+          - type: history-graph
+            entities:
+              - entity: sensor.boiler_hpactivity
+                name: " "
+            hours_to_show: 24
+            grid_options:
+              columns: full
+              rows: auto
+          - type: vertical-stack
+            cards:
+              - type: heading
+                icon: mdi:heat-wave
+                heading: Energiebilanz - Heizung - Heute
+                heading_style: title
+              - type: horizontal-stack
+                cards:
+                  - type: statistic
+                    entity: sensor.boiler_nrgconscompheating
+                    period:
+                      calendar:
+                        period: day
+                    stat_type: change
+                    name: Energieverbrauch (Heizen)
+                    icon: mdi:lightning-bolt
+                  - type: statistic
+                    entity: sensor.boiler_nrgsuppheating
+                    period:
+                      calendar:
+                        period: day
+                    stat_type: change
+                    name: Energieabgabe (Heizen)
+                    icon: mdi:heat-wave
+                grid_options:
+                  columns: 18
+                  rows: auto
+            grid_options:
+              columns: 18
+              rows: auto
+          - type: vertical-stack
+            cards:
+              - type: heading
+                icon: mdi:water
+                heading: Energiebilanz - Warmwasser - Heute
+                heading_style: title
+              - type: horizontal-stack
+                cards:
+                  - type: statistic
+                    entity: sensor.boiler_nrgconscompww
+                    period:
+                      calendar:
+                        period: day
+                    stat_type: change
+                    name: Energieverbrauch (Warmwasser)
+                  - type: statistic
+                    entity: sensor.boiler_nrgsuppww
+                    period:
+                      calendar:
+                        period: day
+                    stat_type: change
+                    name: Energieabgabe (Warmwasser)
+                    icon: mdi:water
+                grid_options:
+                  columns: 18
+                  rows: auto
+            grid_options:
+              columns: 18
+              rows: auto
+          - chart_type: bar
+            period: hour
+            type: statistics-graph
+            entities:
+              - sensor.boiler_nrgsupptotal
+                name: Erzeugte thermische Energie
+              - sensor.boiler_nrgconstotal
+                name: Eingesetzte elektrische Energie
+            days_to_show: 1
+            stat_types:
+              - change
+            grid_options:
+              columns: full
+              rows: 8
+        column_span: 4
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: title
+            heading: Gesamte Laufzeit
+          - type: vertical-stack
+            cards:
+              - type: heading
+                icon: mdi:heat-wave
+                heading: Energiebilanz - Heizung
+                heading_style: title
+              - type: horizontal-stack
+                cards:
+                  - type: entity
+                    entity: sensor.boiler_nrgconscompheating
+                    name: Energieverbrauch (Heizen)
+                    icon: mdi:lightning-bolt
+                  - type: entity
+                    entity: sensor.boiler_nrgsuppheating
+                    name: Energieabgabe (Heizen)
+                    icon: mdi:heat-wave
+                grid_options:
+                  columns: 18
+                  rows: auto
+            grid_options:
+              columns: 18
+              rows: auto
+          - type: vertical-stack
+            cards:
+              - type: heading
+                icon: mdi:water
+                heading: Energiebilanz - Warmwasser
+                heading_style: title
+              - type: horizontal-stack
+                cards:
+                  - type: entity
+                    entity: sensor.boiler_nrgconscompww
+                    name: Energieverbrauch (Heizen)
+                  - type: entity
+                    entity: sensor.boiler_nrgsuppww
+                    name: Energieabgabe (Heizen)
+                    icon: mdi:water
+                grid_options:
+                  columns: 18
+                  rows: auto
+            grid_options:
+              columns: 18
+              rows: auto
+          - type: vertical-stack
+            cards:
+              - type: heading
+                icon: mdi:heat-wave
+                heading: Energiebilanz - Total
+                heading_style: title
+              - type: horizontal-stack
+                cards:
+                  - type: entity
+                    name: Energieverbrauch
+                    icon: mdi:lightning-bolt
+                    entity: sensor.boiler_nrgconstotal
+                  - type: entity
+                    entity: sensor.boiler_nrgsupptotal
+                    name: Energieabgabe
+                    icon: mdi:heat-pump-outline
+                  - type: entity
+                    entity: sensor.boiler_jaz
+                    name: Jahresarbeitszahl
+                grid_options:
+                  columns: 18
+                  rows: auto
+            grid_options:
+              columns: 18
+              rows: auto
+        column_span: 4
+    badges:
+      - type: entity
+        show_name: true
+        show_state: true
+        show_icon: true
+        entity: sensor.boiler_hpactivity
+        color: ""
+        icon: mdi:heat-pump-outline
+        show_entity_picture: false
+        name: Modus
+      - type: entity
+        show_name: true
+        show_state: true
+        show_icon: true
+        entity: select.boiler_silentmode
+        color: ""
+        icon: mdi:fan-minus
+        name: Silent
+    type: sections
+    max_columns: 4
+    cards: []
