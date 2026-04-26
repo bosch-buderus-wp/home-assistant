@@ -145,9 +145,9 @@ views:
             period: hour
             type: statistics-graph
             entities:
-              - sensor.boiler_nrgsupptotal
+              - entity: sensor.boiler_nrgsupptotal
                 name: Erzeugte thermische Energie
-              - sensor.boiler_nrgconstotal
+              - entity: sensor.boiler_nrgconstotal
                 name: Eingesetzte elektrische Energie
             days_to_show: 1
             stat_types:
