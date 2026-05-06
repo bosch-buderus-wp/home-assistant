@@ -121,14 +121,14 @@ views:
               - type: horizontal-stack
                 cards:
                   - type: statistic
-                    entity: sensor.boiler_wwmeter
+                    entity: sensor.boiler_dhw_meter
                     period:
                       calendar:
                         period: day
                     stat_type: change
                     name: Energieverbrauch (Warmwasser)
                   - type: statistic
-                    entity: sensor.boiler_nrgww
+                    entity: sensor.boiler_dhw_nrg
                     period:
                       calendar:
                         period: day
@@ -192,10 +192,10 @@ views:
               - type: horizontal-stack
                 cards:
                   - type: entity
-                    entity: sensor.boiler_wwmeter
+                    entity: sensor.boiler_dhw_meter
                     name: Energieverbrauch (Heizen)
                   - type: entity
-                    entity: sensor.boiler_nrgww
+                    entity: sensor.boiler_dhw_nrg
                     name: Energieabgabe (Heizen)
                     icon: mdi:water
                 grid_options:
