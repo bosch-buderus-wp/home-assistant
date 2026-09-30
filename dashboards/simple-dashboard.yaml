@@ -77,7 +77,7 @@ views:
           - type: history-graph
             entities:
               - entity: sensor.boiler_hpactivity
-                name: " "
+                name: ' '
             hours_to_show: 24
             grid_options:
               columns: full
@@ -121,14 +121,14 @@ views:
               - type: horizontal-stack
                 cards:
                   - type: statistic
-                    entity: sensor.boiler_wwmeter
+                    entity: sensor.boiler_dhw_meter
                     period:
                       calendar:
                         period: day
                     stat_type: change
                     name: Energieverbrauch (Warmwasser)
                   - type: statistic
-                    entity: sensor.boiler_nrgww
+                    entity: sensor.boiler_dhw_nrg
                     period:
                       calendar:
                         period: day
@@ -192,10 +192,10 @@ views:
               - type: horizontal-stack
                 cards:
                   - type: entity
-                    entity: sensor.boiler_wwmeter
+                    entity: sensor.boiler_dhw_meter
                     name: Energieverbrauch (Heizen)
                   - type: entity
-                    entity: sensor.boiler_nrgww
+                    entity: sensor.boiler_dhw_nrg
                     name: Energieabgabe (Heizen)
                     icon: mdi:water
                 grid_options:
@@ -236,7 +236,7 @@ views:
         show_state: true
         show_icon: true
         entity: sensor.boiler_hpactivity
-        color: ""
+        color: ''
         icon: mdi:heat-pump-outline
         show_entity_picture: false
         name: Modus
@@ -245,9 +245,16 @@ views:
         show_state: true
         show_icon: true
         entity: select.boiler_silentmode
-        color: ""
+        color: ''
         icon: mdi:fan-minus
         name: Silent
+      - type: entity
+        show_name: true
+        show_state: true
+        show_icon: true
+        entity: switch.thermostat_absent
+        name:
+          type: entity
     type: sections
     max_columns: 4
     cards: []
